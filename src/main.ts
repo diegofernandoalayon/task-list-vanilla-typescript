@@ -1,4 +1,6 @@
 import {v4} from 'uuid'
+import Toastify from 'toastify-js'
+import "toastify-js/src/toastify.css"
 import './style.css'
 
 
@@ -28,6 +30,14 @@ taskForm?.addEventListener('submit', (event) => {
   })
 
   localStorage.setItem('tasks', JSON.stringify(tasks))
+  Toastify({
+    text: "Task added successfully",
+    duration: 2500,
+    close: true,
+    style: {
+      background: "linear-gradient(to right, #00b09b, #96c93d)",
+    },
+  }).showToast()
 
   renderTasks(tasks) // para renderizar inmediatamente las tareas
 
@@ -60,11 +70,20 @@ function renderTasks(tasks: Task[]){
     btnDelete.className = 'bg-red-500 px-2 py-1 rounded-lg'
     btnDelete.innerText = 'Delete'
     // para eliminar una tarea
-    btnDelete.addEventListener('click', (e) =>{
+    btnDelete.addEventListener('click', () =>{
       const index = tasks.findIndex( t => t.id === task.id)
       tasks.splice(index, 1)
       localStorage.setItem('tasks', JSON.stringify(tasks))
       renderTasks(tasks)
+      Toastify({
+        text: 'task deleted successfully',
+        close:true,
+        gravity: "bottom", // `top` or `bottom
+        duration: 2500,
+        style: {
+          background: 'linear-gradient(to right, #FE4E00, #E9190F)'
+        }
+      }).showToast()
     })
     header.append(title)
     header.append(btnDelete) 

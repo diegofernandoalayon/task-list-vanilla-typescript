@@ -16,6 +16,8 @@
     "vite": "^2.9.9"
   },
   "dependencies": {
+    "@types/toastify-js": "^1.11.1",
+    "toastify-js": "^1.11.2",
     "uuid": "^8.3.2"
   }
 }
