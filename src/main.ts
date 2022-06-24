@@ -1,4 +1,6 @@
+import {v4} from 'uuid'
 import './style.css'
+
 
 const taskForm = document.querySelector<HTMLFormElement>('#taskForm') // para indicar que el un elemento formulario
 
@@ -6,7 +8,8 @@ const tasksList = document.querySelector<HTMLDivElement>('#tasksList')
 
 interface Task {
   title: string
-  description: string
+  description: string,
+  id: string
 }
 
 let tasks: Task[] = []
@@ -20,7 +23,8 @@ taskForm?.addEventListener('submit', (event) => {
 
   tasks.push({
     title : title.value,
-    description: description.value
+    description: description.value,
+    id: v4()
   })
 
   localStorage.setItem('tasks', JSON.stringify(tasks))
@@ -55,6 +59,13 @@ function renderTasks(tasks: Task[]){
     const btnDelete = document.createElement('button')
     btnDelete.className = 'bg-red-500 px-2 py-1 rounded-lg'
     btnDelete.innerText = 'Delete'
+    // para eliminar una tarea
+    btnDelete.addEventListener('click', (e) =>{
+      const index = tasks.findIndex( t => t.id === task.id)
+      tasks.splice(index, 1)
+      localStorage.setItem('tasks', JSON.stringify(tasks))
+      renderTasks(tasks)
+    })
     header.append(title)
     header.append(btnDelete) 
 
