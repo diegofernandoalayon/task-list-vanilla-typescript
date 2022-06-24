@@ -67,7 +67,7 @@ function renderTasks(tasks: Task[]){
     title.innerText = task.title
 
     const btnDelete = document.createElement('button')
-    btnDelete.className = 'bg-red-500 px-2 py-1 rounded-lg'
+    btnDelete.className = 'bg-red-500 hover:bg-red-400 px-2 py-1 rounded-lg'
     btnDelete.innerText = 'Delete'
     // para eliminar una tarea
     btnDelete.addEventListener('click', () =>{
@@ -82,7 +82,8 @@ function renderTasks(tasks: Task[]){
         duration: 2500,
         style: {
           background: 'linear-gradient(to right, #FE4E00, #E9190F)'
-        }
+        },
+        className: 'bg-blue-800'
       }).showToast()
     })
     header.append(title)
