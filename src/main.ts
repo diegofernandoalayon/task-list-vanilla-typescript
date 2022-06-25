@@ -63,7 +63,7 @@ function renderTasks(tasks: Task[]){
     const header = document.createElement('header')
     header.className = 'flex justify-between'
 
-    const title = document.createElement('span')
+    const title = document.createElement('strong')
     title.innerText = task.title
 
     const btnDelete = document.createElement('button')
@@ -90,6 +90,7 @@ function renderTasks(tasks: Task[]){
     header.append(btnDelete) 
 
     const description = document.createElement('span')
+    description.className = 'pl-4'
     description.innerText = task.description
 
 
